@@ -22,7 +22,6 @@ public class MainController {
     final List<String> quotations = readAllLines("citaty.txt");
     final Logger logger = LogManager.getLogger(MainController.class.getName());
     final List<String> imagesCodes = Arrays.asList("YucGL8SZkIg", "891QM1IH4wI", "DV6CNig-_OE", "gXQCELcnI2U", "WHjaRrnUX3Q");
-    final int randomNumber = getRandomNumber(imagesCodes);
 
     private int getRandomNumber(List<String> arr) {
         Random rand = new Random();
@@ -53,6 +52,7 @@ public class MainController {
     @GetMapping("/")
     public ModelAndView citaty() {
         ModelAndView result = new ModelAndView("citaty");
+        int randomNumber = getRandomNumber(imagesCodes);
         result.addObject("imageUrl", getImageUrl(imagesCodes, randomNumber));
         result.addObject("quotation", quotations.get(randomNumber));
         return result;
